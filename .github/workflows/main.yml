@@ -9,7 +9,7 @@ on:
       - '*.md'
 
 env:
-  IMAGE_NAME: dwpdigital/docker-aviator
+  IMAGE_NAME: dwpdigital/aviator
 
 jobs:
   get-publish-version:
