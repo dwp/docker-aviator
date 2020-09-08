@@ -1,31 +1,31 @@
 jobs:
-  - name: dataworks-repo-template-docker-pr
+  - name: docker-aviator-pr
     plan:
-      - get: dataworks-repo-template-docker-pr
+      - get: docker-aviator-pr
         trigger: true
         version: every
-      - put: dataworks-repo-template-docker-pr
+      - put: docker-aviator-pr
         params:
-          path: dataworks-repo-template-docker-pr
+          path: docker-aviator-pr
           status: pending
         input_mapping:
-          dataworks-repo-template-docker: dataworks-repo-template-docker-pr
+          docker-aviator: docker-aviator-pr
       - .: (( inject meta.plan.terraform-bootstrap ))
         input_mapping:
-          dataworks-repo-template-docker: dataworks-repo-template-docker-pr
+          docker-aviator: docker-aviator-pr
       - .: (( inject meta.plan.terraform-plan ))
         input_mapping:
-          dataworks-repo-template-docker: dataworks-repo-template-docker-pr
+          docker-aviator: docker-aviator-pr
         params:
           TF_WORKSPACE: "management-dev"
           DETAILED_EXITCODE: ""
         on_failure:
-          put: dataworks-repo-template-docker-pr
+          put: docker-aviator-pr
           params:
-            path: dataworks-repo-template-docker-pr
+            path: docker-aviator-pr
             status: failure
         on_success:
-          put: dataworks-repo-template-docker-pr
+          put: docker-aviator-pr
           params:
-            path: dataworks-repo-template-docker-pr
+            path: docker-aviator-pr
             status: success
