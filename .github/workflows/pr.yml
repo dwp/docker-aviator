@@ -3,7 +3,7 @@ name: High vulns Snyk PR scan
 on: pull_request
 
 env:
-  IMAGE_NAME: dwpdigital/docker-aviator
+  IMAGE_NAME: dwpdigital/aviator
 
 jobs:
   docker-build-and-scan:
